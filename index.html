@@ -1,0 +1,9 @@
+<html>
+  <script type="text/javascript">
+    window.addEventListener("message", msgGet, false);
+    
+    function msgGet(evt) {
+      evt.source.postMessage(evt, "*");
+    }
+  </script>
+</html>
