@@ -7,7 +7,7 @@ head__.prepend(script__);
 var css__ = document.createElement("link");
 css__.rel = "stylesheet";
 css__.type = "text/stylesheet";
-css__.href = base__ + "style.min.css";
+css__.href = base__ + "style.lite.min.css";
 head__.prepend(css__);
 delete css__;
 delete script__;
@@ -20,7 +20,7 @@ function mark_page(st) {
     priz_md.contentWindow.postMessage(st, "*");
     markdown_content = "";
     return new Promise(resolve => {
-        window.setTimeout(() => {resolve(markdown_content)}, 50);
+        resolve(markdown_content);
     });
 }
 

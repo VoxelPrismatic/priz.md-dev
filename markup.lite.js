@@ -1,0 +1,14 @@
+var base__ = "https://voxelprismatic.github.io/priz.md/out/";
+var head__ = document.head;
+var script__ = document.createElement("script");
+script__.src = base__ + "md.min.js";
+head__.prepend(script__);
+var css__ = document.createElement("link");
+css__.rel = "stylesheet";
+css__.type = "text/stylesheet";
+css__.href = base__ + "style.lite.min.css";
+head__.prepend(css__);
+delete css__;
+delete script__;
+delete base__;
+delete head__;
