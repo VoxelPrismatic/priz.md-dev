@@ -20,7 +20,7 @@ function mark_page(st) {
     priz_md.contentWindow.postMessage(st, "*");
     markdown_content = "";
     return new Promise(resolve => {
-        resolve(markdown_content);
+        window.setTimeout(() => {resolve(markdown_content)}, 25);
     });
 }
 
@@ -29,3 +29,5 @@ function recieve_markdown(evt) {
         markdown_content = evt.data;
     }
 }
+
+window.addEventListener("message", recieve_markdown, false);

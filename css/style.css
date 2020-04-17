@@ -108,6 +108,15 @@ blockquote {
 ol,
 ul {
   margin: 0px;
+  padding-top: 0px;
+}
+ul {
+  list-style-type: "> ";
+}
+ul > li::marker,
+ol > li::marker {
+  font-family: "Ubuntu Mono";
+  color: #8888;
 }
 #footer {
   font-size: x-small;
@@ -216,6 +225,9 @@ ul {
 }
 .mono {
   font-family: "Ubuntu Mono";
+}
+.hidden-marker::marker {
+  color: #0000;
 }
 h1,
 h2,
@@ -839,4 +851,3 @@ nah {
 nah {
   cursor: zoom-out;
 }
-

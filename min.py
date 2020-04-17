@@ -95,7 +95,8 @@ styles = [
     ".code",
     ".dict",
     ".line",
-    ".def"
+    ".def",
+    ".hidden-marker",
 ]
 
 print("Generating style.lite.min.css")

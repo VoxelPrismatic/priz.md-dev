@@ -1,10 +1,14 @@
-function mk_ul(st) {
-    var str = "<ul>";
+function mk_ul(st, thing = "ul") {
+    var str = `<${thing}>`;
     st = mark_page(st);
     for(var line of st.split("<br>")) {
         if(line) {
-            str += "<li>" + line + "</li>";
+            var extra = "";
+            if(line.startsWith("<ul>") || line.startsWith("<ol>")) {
+                extra = ' class="hidden-marker"';
+            }
+            str += `<li${extra}>` + line + "</li>";
         }
     }
-    return str + "</ul><br>"
+    return str + `</${thing}><br>`;
 }
