@@ -21,7 +21,7 @@ function mark_page(st) {
     markdown_content = "";
     return new Promise(resolve => {
         resolve(markdown_content);
-    }
+    });
 }
 
 function recieve_markdown(evt) {
