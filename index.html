@@ -6,6 +6,7 @@
     function msgGet(evt) {
       console.log(evt);
       var text = mark_page(evt.data);
+      console.log(text);
       evt.source.postMessage(text, "*");
     }
   </script>
