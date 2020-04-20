@@ -22,6 +22,20 @@ function set_regex() {
                 return `<a href="tel:${esc(p2)}">${esc(mark(p1))}</a>`;
             }
         ], [
+            /\%\[(.+?)\]<(.+?)>/gm,
+            function(m, p2, p1) {
+                p1 = p1.toLowerCase();
+                var st = "<span class='";
+                if(p1.includes("h")) {
+                    st += "flip-h ";
+                }
+                if(p1.includes("v")) {
+                    st += "flip-v ";
+                }
+                var st = st.slice(0, -1) + "'>" + p2 + "</span>";
+                return st;
+            }
+        ], [
             /\?\[(.+?)\]<(.+?)>/gm,
             function(m, p1, p2) {
                 return `<span title="${esc(p2)}" class="def">${esc(mark(p1))}</span>`;
@@ -114,10 +128,10 @@ function set_regex() {
             "<div style='float: right;'>$2</div>" +
             "</div></br>"
         ],
-
         [/^\:\<\:(.+)/gm, "<div style='text-align: left;'>$1</div>"],
         [/^\:\>\:(.+)/gm, "<div style='text-align: right;'>$1</div>"],
         [/^\:v\:(.+)/gm, "<div style='text-align: center;'>$1</div>"],
+        [/^\:=\:(.+)/gm, "<div style='text-align: justified;'>$1</div>"],
 
         //Others
         [/\{\{(\w+?)\}\}(.+?) /gm, "<span class='$1'>$2 </span>"],
@@ -126,7 +140,41 @@ function set_regex() {
         [/^-~-$/gm, "<div class='line'></div></br>"],
         [/(<u>_<\/u>|___)/gm, "<div>"],
         [/===/gm, "</div>"],
-
+        [
+            /(.)\$(.+?)\;/gm,
+            function(m, p2, p1) {
+                try {
+                    var accent = accents[p1];
+                    var cls = "";
+                    var sty = "";
+                    if(accent[1] == "+") {
+                        cls = "accent-h";
+                    } else if(accent[1] == "-") {
+                        cls = "accent-l";
+                    } if(p2.match(/[acegmnopqrsuvwxyz]/gm)) { // bdfhijklt are too tall
+                        cls += " accent-lc";
+                    } if(accent[2]) {
+                        if(accent[2] == "0px") {
+                            sty = " style='left: 0px'";
+                        } else {
+                            cls += " accent-hook";
+                        }
+                    } if(p2.match(/[ijltfIJLT]/)) {
+                        if(sty) {
+                            sty = " style='left: 3px'";
+                        } else if(cls.includes("hook")) {
+                            sty = " style='left: 0px'";
+                        } else {
+                            sty = " style='left: -2px'";
+                        }
+                    }
+                    return `${p2}<span class='${cls}'${sty}>` + accent[0].slice(1, 2) + "</span>";
+                } catch(err) {
+                    return "";
+                }
+            }
+        ],
+            
         [
             /\\u\{([a-fA-F0-9]+)\}/gm, 
             function(m, p1) {
