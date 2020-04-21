@@ -22,6 +22,7 @@ grab_dirs("md")
 minjs = ""
 
 repl = [
+    [r" +//.*\n", "\n"],
     [r"([\{\[\(])\n *", r"\1"],
     [r"\n *", r"\n"],
     [r" *\n", r"\n"],
@@ -40,11 +41,10 @@ for file in files:
     minjs += st + "\n"
 
 repl = [
-    [r";\n", r";"],
+    [r";\n+", r";"],
     [r"( *\n *)+", r"\n"],
     [r"([\}\]\)])\n(.?)([\}\]\),])", r"\1\2\3"],
     [r" *([=,\|+\&\)\(-/\*;><]) *", r"\1"],
-    [r"//.*\n", ""],
     [r"/\*(.|\n)*?\*/", ""],
 ]
 for r, s in repl:
@@ -69,7 +69,7 @@ for file in files:
     st = st.replace("/prizm.dev/assets/css", ".")
     open(file, "w").write(st)
 
-os.system("sudo lessc /home/priz/priz.md/css/style.less /home/priz/priz.md/css/style.css")
+os.system("sudo lessc ./css/style.less ./css/style.css")
 
 print("Generating style.min.css")
 mincss = open("css/style.css").read()
@@ -106,7 +106,6 @@ styles = [
     ".dict",
     ".line",
     ".def",
-    ".hidden-marker",
 ]
 
 print("Generating style.lite.min.css")

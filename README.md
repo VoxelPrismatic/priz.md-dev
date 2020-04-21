@@ -44,7 +44,6 @@ If you don't want to recreate those, then use `markup.lite.js` or `iframe.lite.j
 | `.dict` | Just a line between a key and a value |
 | `.line` | A section seperator |
 | `.def` | Not that important but is useful for accessibility |
-| `.hidden-marker` | Hides the marker of embedded lists and things |
 
 ## #] Features / bug fixes
 You can always ask for new features or bring light on bug fixes in the issues tab.
