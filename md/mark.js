@@ -22,10 +22,26 @@ function mark_page(st) {
     var ol = "";
     var ul = "";
     var quoted = "";
+    var dropper = "";
     var incode = false;
+    var indropper = false;
     var intable = false;
 
     for(var line of st.split("\n")) {
+        if(line && line.replace(/^\>\>\[.*\]\<\<$/gm, "") == "") {
+            indropper = true;
+        }
+        if(line == "---") {
+            indropper = false;
+            str += mk_dropper(dropper.slice(0, -1));
+            dropper = "";
+            continue;
+        }
+        if(indropper) {
+            dropper += line + "\n";
+            continue;
+        }
+        
         if(line == "```") {
             incode = !incode;
             if(incode)

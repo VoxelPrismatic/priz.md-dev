@@ -5,11 +5,11 @@ files = []
 
 print("Generating md.min.js")
 
-def grab_dirs(root):
+def grab_dirs(root, end = ".js"):
     if not root.endswith("/"):
         root += "/"
     for file in os.listdir(root):
-        if file.endswith(".js"):
+        if file.endswith(end):
             files.append(root + file)
         else:
             try:
@@ -43,7 +43,7 @@ repl = [
     [r";\n", r";"],
     [r"( *\n *)+", r"\n"],
     [r"([\}\]\)])\n(.?)([\}\]\),])", r"\1\2\3"],
-    [r" *([=,\|+]) *", r"\1"],
+    [r" *([=,\|+\&\)\(-/\*;><]) *", r"\1"],
     [r"//.*\n", ""],
     [r"/\*(.|\n)*?\*/", ""],
 ]
@@ -60,8 +60,18 @@ minjs = """\
 """ + minjs
 open("out/md.min.js", "w+").write(minjs)
 
-print("Generating style.min.css")
+print("Running lesscss")
 
+files = []
+grab_dirs("css", ".less")
+for file in files:
+    st = open(file).read()
+    st = st.replace("/prizm.dev/assets/css", ".")
+    open(file, "w").write(st)
+
+os.system("sudo lessc /home/priz/priz.md/css/style.less /home/priz/priz.md/css/style.css")
+
+print("Generating style.min.css")
 mincss = open("css/style.css").read()
 
 repl = [

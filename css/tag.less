@@ -1,5 +1,5 @@
-@import (reference) "/prizm.dev/assets/css/fn.less";
-@import (reference) "/prizm.dev/assets/css/media.less";
+@import (reference) "./fn.less";
+@import (reference) "./media.less";
 
 * {
     font-family: "Ubuntu";
@@ -56,6 +56,9 @@
 } ol, ul {
     margin: 0px;
     padding-top: 0px;
-} ul::marker {
-    list-style-type: "> ";
+} ul {
+  list-style-type: "> "; 
+} ul > li::marker, ol > li::marker {
+  font-family: "Ubuntu Mono";
+  color: #8888;
 }

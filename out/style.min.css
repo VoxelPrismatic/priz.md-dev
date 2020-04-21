@@ -36,6 +36,17 @@ ul > li::marker,ol > li::marker{font-family:"Ubuntu Mono";color:#8888;}
 .bgcolor{background-color:#112222;}
 .mono{font-family:"Ubuntu Mono";}
 .hidden-marker::marker{color:#0000;}
+.accent-h,.accent-l{position:relative;left:-5px;}
+.accent-h{top:-4px;}
+.accent-lc{top:0px;}
+.accent-hook{left:-3px;}
+.flip-h{transform:scaleX(-100%);display:inline-block;}
+.flip-v{transform:scaleY(-100%);display:inline-block;}
+.flip-h.flip-v{transform:scale(-100%,-100%);}
+.dropper-closed > div{display:none;}
+.h-dropper::before{content:"[\039b]  ";font-weight:bold;font-family:"Ubuntu Mono";}
+.h-dropper-closed::before{content:"[V]  ";font-weight:bold;font-family:"Ubuntu Mono";}
+.dropper > div{border-left:2px #0ff solid;padding-left:5px;}
 h1,h2,h3,h4,h5,h6{text-shadow:0px 0px 5px;}
 a:hover,a:focus{text-shadow:0px 0px 10px;}
 h1:hover,h1:focus{text-shadow:0px 0px 10px;}
