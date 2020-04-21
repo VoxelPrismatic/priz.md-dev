@@ -6,8 +6,10 @@ A "server-side" processor for my markdown flavor
 [View the syntax](https://voxelprismatic.github.io/priz.md/view), it is different than regular
 MarkDown in more ways than one.
 
+[Test it here](https://voxelprismatic.github.io/priz.md/markup)
+
 ## #] How to use it
-Add `<script type="text/javascript src="https://voxelprismatic.github.io/priz.md/markup.js"></script>`
+Add `<script type="text/javascript src="https://voxelprismatic.github.io/priz.md/markup.js" id="priz_script"></script>`
 to the `<head>` of your page.
 
 To use the markdown, just do the following:
