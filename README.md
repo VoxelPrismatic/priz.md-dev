@@ -13,7 +13,7 @@ Add `<script type="text/javascript src="https://voxelprismatic.github.io/priz.md
 to the `<head>` of your page.
 
 To use the markdown, just do the following:
-```
+```js
 var content = `
 <content>
 `;
