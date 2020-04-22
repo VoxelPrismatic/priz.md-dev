@@ -1,6 +1,7 @@
 var base__ = "https://voxelprismatic.github.io/priz.md/out/";
 var head__ = document.getElementById("priz_importer");
-if(iframe_md__) {
+var meta__ = document.getElementById("priz_syntax");
+if(iframe_md__ && !meta) {
     var script__ = document.createElement("iframe");
     script__.src = base__.slice(0, -4);
     script__.id = "prizmd";
@@ -25,6 +26,9 @@ if(iframe_md__) {
     var script__ = document.createElement("script");
     script__.src = base__ + "md.min.js";
     script__.type = "text/javascript";
+    script__.onload = function() {
+        window.onresize = sub_styles();
+    }
 }
 head__.after(script__);
 var css__ = document.createElement("link");
@@ -35,6 +39,19 @@ if(lite_css__)
 else
     css__.href = base__ + "style.min.css";
 head__.after(css__);
+if(meta__) {
+    var css__ = document.createElement("link");
+    css__.rel = "stylesheet";
+    css__.type = "text/css";
+    css__.href = base__ + "syntax.min.css";
+    head__.after(css__);
+    for(var thing of meta__.content.split(";")) {
+        var script__ = document.createElement("script");
+        script__.src = base__ + thing + ".min.js";
+        script__.type = "text/javascript";
+        head__.after(script__);
+    }
+}
 delete css__;
 delete script__;
 delete base__;
