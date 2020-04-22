@@ -1,6 +1,6 @@
 var base__ = "https://voxelprismatic.github.io/priz.md/out/";
 var head__ = document.getElementById("priz_importer");
-if(iframe_md) {
+if(iframe_md__) {
     var script__ = document.createElement("iframe");
     script__.src = base__.slice(0, -4);
     script__.id = "prizmd";
@@ -30,7 +30,7 @@ head__.after(script__);
 var css__ = document.createElement("link");
 css__.rel = "stylesheet";
 css__.type = "text/css";
-if(lite_css)
+if(lite_css__)
     css__.href = base__ + "style.lite.min.css";
 else
     css__.href = base__ + "style.min.css";
