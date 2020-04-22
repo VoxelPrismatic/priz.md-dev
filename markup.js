@@ -1,15 +1,10 @@
-var base__ = "https://voxelprismatic.github.io/priz.md/out/";
+var base__ = "https://voxelprismatic.github.io/priz.md/";
+var iframe_md__ = false;
+var lite_css__ = false;
+
 var head__ = document.getElementById("priz_script");
 var script__ = document.createElement("script");
-script__.src = base__ + "md.min.js";
+script__.src = base__ + "priz_importer.js";
 script__.type = "text/javascript";
+script__.id = "priz_importer";
 head__.after(script__);
-var css__ = document.createElement("link");
-css__.rel = "stylesheet";
-css__.type = "text/css";
-css__.href = base__ + "style.min.css";
-head__.after(css__);
-delete css__;
-delete script__;
-delete base__;
-delete head__;
