@@ -21,3 +21,7 @@ function sub_styles() {
         resizeDicts();
     }
 }
+
+function updateSpacer() {
+    // Not needed for external sources
+}
