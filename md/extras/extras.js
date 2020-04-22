@@ -9,3 +9,15 @@ function compSty(elem) {
         }
     }
 }
+
+function sub_styles() {
+    if(find(">table")) {
+        styleTables();
+    }
+    if(find(".accent")) {
+        style_accents();
+    }
+    if(find(".dict")) {
+        resizeDicts();
+    }
+}
