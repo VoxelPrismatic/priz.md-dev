@@ -18,7 +18,8 @@ var content = `
 <content>
 `;
 
-elementNode.innerHTML = mark_page(content);
+elementNode.innerHTML = mark_page(content); // Actually parse the markdown
+sub_styles(); // Updates things like dicts and tables and accents
 ```
 
 ## #] Important notices
