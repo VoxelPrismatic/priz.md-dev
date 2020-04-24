@@ -46,21 +46,21 @@ if(meta__) {
     css__.href = base__ + "syntax.min.css";
     head__.after(css__);
     meta__.content = "index," + meta__.content + ",base";
+    var scripts__ = [];
     for(var thing of meta__.content.split(",")) {
         if(thing) {
             var script__ = document.createElement("script");
             script__.id = thing + ".min.js";
-            script__.onloadstart = function() {console.log("Loading " + this.id);};
-            script__.onload = function() {console.log("Loading " + this.id);};
+            script__.onload = function() {head__.after(scripts__.pop())};
             script__.src = base__ + thing + ".min.js";
             script__.type = "text/javascript";
-            head__.after(script__);
+            scripts__.push(script__);
         }
     }
+    head__.after(scripts__.pop())
 }
 delete css__;
 delete script__;
 delete base__;
-delete head__;
 delete iframe_md__;
 delete lite_css__;
