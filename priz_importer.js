@@ -49,6 +49,8 @@ if(meta__) {
     for(var thing of meta__.content.split(",")) {
         if(thing) {
             var script__ = document.createElement("script");
+            script__.id = thing + ".min.js";
+            script__.onloadstart = function() {console.log("Loading " + this.id);};
             script__.src = base__ + thing + ".min.js";
             script__.type = "text/javascript";
             head__.after(script__);
