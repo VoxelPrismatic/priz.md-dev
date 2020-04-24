@@ -1,6 +1,6 @@
 var js_cls = [
-    "AggregateError", "Array", "ArrayBuffer", "AsyncFunction", "AsyncIterator",
-    "Atomics", "BigInt", "BigInt64Array", "BigUint64Array", "Boolean", "DataView",
+    "AggregateError", "ArrayBuffer", "Array", "AsyncFunction", "AsyncIterator",
+    "Atomics", "BigInt64Array", "BigUint64Array", "BigInt", "Boolean", "DataView",
     "Date", "Error", "EvalError", "Float32Array", "Float64Array", "Function",
     "Generator", "GeneratorFunction", "Infinity", "Int16Array", "Int32Array",
     "Int8Array", "InternalError", "Intl", "Intl.Collator", "Intl.DateTimeFormat",
@@ -104,19 +104,6 @@ function mark_syntax_js(st) {
     var gsym = "("+sym+")";
     for(var r of js_regex) {
         st = st.replace(r[0], r[1]);
-    } for(var r of js_cls) {
-        st = st.replace(
-            RegExp("^" + r + gsym, "gm"),
-            `<span class="cls">${r.split('').join('\u200b')}</span>$1`
-        );
-        st = st.replace(
-            RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"),
-            `$1<span class="cls">${r.split('').join('\u200b')}</span>$2`
-        );
-        st = st.replace(
-            RegExp("^" + r + "$"),
-            `<span class="cls">${r.split('').join('\u200b')}</span>`
-        );
     } for(var r of js_kw) {
         st = st.replace(
             RegExp("^"+r+gsym, "gm"),
@@ -129,6 +116,19 @@ function mark_syntax_js(st) {
         st = st.replace(
             RegExp("^" + r + "$"),
             `<span class="kw">${r.split('').join('\u200b')}</span>`
+        );
+    } for(var r of js_cls) {
+        st = st.replace(
+            RegExp("^" + r + gsym, "gm"),
+            `<span class="cls">${r.split('').join('\u200b')}</span>$1`
+        );
+        st = st.replace(
+            RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"),
+            `$1<span class="cls">${r.split('').join('\u200b')}</span>$2`
+        );
+        st = st.replace(
+            RegExp("^" + r + "$"),
+            `<span class="cls">${r.split('').join('\u200b')}</span>`
         );
     } for(var r of ["await", "async"]) {
         st = st.replace(
