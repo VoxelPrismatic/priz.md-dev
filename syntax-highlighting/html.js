@@ -10,7 +10,7 @@ var html_regex = [
             for(var attr of p1.split(" ").slice(1)) {
                 st += " ";
                 if(attr.includes("=")) {
-                    st += `<span class="kw">${attr.split("=")[0] + "="}</span>`;
+                    st += `<span class="cls">${attr.split("=")[0] + "="}</span>`;
                     st += `<span class="str">${attr.split("=")[1]}</span>`;
                 } else {
                     st += `<span class="str">${attr.split("=")[0]}</span>`;
