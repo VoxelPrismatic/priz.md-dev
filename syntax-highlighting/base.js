@@ -18,7 +18,7 @@ var std_number__ = [
             return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
         }
     ], [
-        /([^\w\d])(-?\d+([eE._]d+)*j?)/gm,
+        /([^\w\d])(-?\d+([eE._]d+)*[jifd]?)/gm,
         function(m, p1, p2) {
             return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
         }

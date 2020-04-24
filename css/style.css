@@ -222,7 +222,7 @@ ol > li::marker {
   cursor: auto;
   white-space: pre;
 }
-.code > span {
+.code span {
   font-family: "Ubuntu Mono", mono;
 }
 .invis {

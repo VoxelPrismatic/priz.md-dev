@@ -19,7 +19,7 @@ var js_kw = [
     "function*", "if", "else", "import", "import.meta", "label", "let",
     "return", "throw", "try", "catch", "var", "with", "delete", "in", "new",
     "instanceof", "new", "this", "super", "typeof", "void", "yield", "yield*",
-
+    "await", "extends", "from", "typeof"
 ];
 
 function js_str_regex(m, b, c) {
@@ -30,25 +30,25 @@ function js_str_regex(m, b, c) {
 
 var js_regex = [
     [
-        /(")(.*?[^\\]|)"/gm,
+        /(")(.*?[^\\\n]|)"/gm,
         js_str_regex
     ], [
-        /(\/)([^*].+?[^\\*])\//gm,
+        /(\/)([^*].+?[^\\*\n])\//gm,
         js_str_regex
     ], [
-        /(')(.*?[^\\]|)'/gm,
+        /(')(.*?[^\\\n]|)'/gm,
         js_str_regex
     ], [
-        /(\`)((.|\n)*[^\\]|)\`/gm,
+        /(\`)((.|\n)*[^\\\n]|)\`/gm,
         js_str_regex
+    ], [
+        /\\u\{([A-Fa-f0-9\u200b]+)\}/gm,
+        `<span class="op">\\u{$1}</span>`
     ],
     ...std_escape__,
     [
-        /\\u\{([A-Fa-f0-9\u200b]+\})/gm,
-        `<span class="op">\\u$1</span>`
-    ], [
         /^([\u200b ]*)function ([\w\d_]+)/gm,
-        `$1<span class="kw">def</span> <span class="fn">$2</span>`
+        `$1<span class="kw">function</span> <span class="fn">$2</span>`
     ], [
         /^([\u200b ]*)class ([\w\d_]+)/gm,
         function(m, a, b) {
@@ -61,14 +61,9 @@ var js_regex = [
     ],
     ...std_number__,
     [
-        /^\/\/(.*)\n/gm,
+        /\/\/(.*)\n/gm,
         function(m, a) {
             return `<span class="comm">//${a.split('').join('\u200b')}</span><br>`;
-        }
-    ], [
-        /([^\u200b])\/\/(.*)\n/gm,
-        function(m, b, a) {
-            return `${b}<span class="comm">//${a.split('').join('\u200b')}</span><br>`;
         }
     ], [
         /([^\u200b])\/\*((.|\n)*)\*\//gm,
@@ -85,7 +80,7 @@ var js_regex = [
 
 function mark_syntax_js(st) {
     st = st.replace(/\n/gm, " \n");
-    st += "\n";
+    st = "\u200b" + st + "\n";
     for(var r of js_regex) {
         st = st.replace(r[0], r[1]);
     }
