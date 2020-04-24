@@ -23,6 +23,8 @@ function mark_page(st) {
     var ul = "";
     var quoted = "";
     var dropper = "";
+    var syntax = "";
+    var code = "";
     var incode = false;
     var indropper = false;
     var intable = false;
@@ -42,18 +44,28 @@ function mark_page(st) {
             dropper += line + "\n";
             continue;
         }
-        
+
         // Code block
-        if(line == "```") {
+        if(line.match(/^\`\`\`(\w+)?/gm)) {
             incode = !incode;
-            if(incode)
+            if(incode) {
+                syntax = line.slice(3);
+            } else {
                 str += `<div class="code">`;
-            else
-                str += `</div>`
+                try {
+                    str += syntax_alias[syntax](code);
+                } catch(err) {
+                    console.error(err);
+                    str += code;
+                }
+                str += "</div>";
+                code = "";
+                syntax = "";
+            }
             continue;
         }
         if(incode) {
-            str += line + "\n";
+            code += line + "\n";
             continue;
         }
 

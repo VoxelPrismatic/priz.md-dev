@@ -1,6 +1,6 @@
 var syntax_alias = {
-    "py": ["python", "py"],
-    "js": ["javascript", "js"],
-    "java": ["java"],
-    "md": ["markdown", "md"],
+    "py": mark_synatx_py,
+    "python", mark_synatx_py,
+    "js": mark_synatx_js,
+    "javascript": mark_synatx_js
 }

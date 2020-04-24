@@ -45,7 +45,7 @@ if(meta__) {
     css__.type = "text/css";
     css__.href = base__ + "syntax.min.css";
     head__.after(css__);
-    for(var thing of meta__.content.split(";")) {
+    for(var thing of meta__.content.split(",")) {
         var script__ = document.createElement("script");
         script__.src = base__ + thing + ".min.js";
         script__.type = "text/javascript";
