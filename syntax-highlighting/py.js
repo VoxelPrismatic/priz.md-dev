@@ -1,11 +1,11 @@
-var cls = [
+var py_cls = [
     "int", "float", "dict", "list", "tuple", "set", "bool", "None", "frozenset",
     "str", "bytes", "file", "type", "complex", "True", "range", "bytearray",
     "memoryview", "False", "range", "breakpoint", "callable", "classmethod",
     "map", "object", "quit"
 ];
 
-var kw = [
+var py_kw = [
     "import", "from", "yield", "break",  "if", "assert",  "finally", "def",
     "elif", "else", "for", "while", "id", "with", "as", "in", "not", "and",
     "or", "is", "super", "self", "global", "local", "try", "except", "pass",
@@ -126,7 +126,7 @@ function mark_syntax_py(st) {
     var gsym = "("+sym+")";
     for(var r of py_regex) {
         st = st.replace(r[0], r[1]);
-    } for(var r of cls) {
+    } for(var r of py_cls) {
         st = st.replace(
             RegExp("^" + r + gsym, "gm"),
             `<span class="cls">${r.split('').join('\u200b')}</span>$1`
@@ -139,7 +139,7 @@ function mark_syntax_py(st) {
             RegExp("^" + r + "$"),
             `<span class="cls">${r.split('').join('\u200b')}</span>`
         );
-    } for(var r of kw) {
+    } for(var r of py_kw) {
         st = st.replace(
             RegExp("^"+r+gsym, "gm"),
             `<span class="kw">${r.split('').join('\u200b')}</span>$1`
@@ -166,6 +166,6 @@ function mark_syntax_py(st) {
             `<span class="aio">${r.split('').join('\u200b')}</span>`
         );
     }
- st = st.replace(/\u200b/gm, "");
+    st = st.replace(/\u200b/gm, "");
     return st.replace(/([^ ])\u200b/gm, "$1").replace(/ +\n/gm, "\n");
 }

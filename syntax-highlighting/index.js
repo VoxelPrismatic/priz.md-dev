@@ -1,6 +1,6 @@
 var syntax_alias = {
-    "py": mark_synatx_py,
-    "python", mark_synatx_py,
-    "js": mark_synatx_js,
-    "javascript": mark_synatx_js
+    "py": mark_syntax_py,
+    "python": mark_syntax_py,
+    "js": mark_syntax_js,
+    "javascript": mark_syntax_js
 }
