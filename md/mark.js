@@ -53,7 +53,11 @@ function mark_page(st) {
             } else {
                 str += `<div class="code">`;
                 try {
-                    str += syntax_alias[syntax](code);
+                    var fn = syntax_alias[syntax];
+                    if(typeof fn == "string") {
+                        fn = syntax_alias[fn];
+                    }
+                    str += fn(code);
                 } catch(err) {
                     console.error(err);
                     str += code;

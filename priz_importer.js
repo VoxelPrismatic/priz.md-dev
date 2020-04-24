@@ -45,7 +45,16 @@ if(meta__) {
     css__.type = "text/css";
     css__.href = base__ + "syntax.min.css";
     head__.after(css__);
-    meta__.content = "index," + meta__.content + ",base";
+    var ct__ = meta__.content;
+    if(ct__.includes("html")) {
+        if(!ct__.includes("js")) {
+            ct__ += ",js";
+        }
+        if(!ct__.includes("css")) {
+            ct__ += ",css";
+        }
+    }
+    meta__.content = "index," + ct__ + ",base";
     var scripts__ = [];
     for(var thing of meta__.content.split(",")) {
         if(thing) {
