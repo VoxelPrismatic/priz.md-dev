@@ -1,4 +1,4 @@
-var base__ = "https://voxelprismatic.github.io/priz.md/";
+var base__ = "https://voxelprismatic.github.io/priz.md-dev/";
 var iframe_md__ = true;
 var lite_css__ = true;
 
