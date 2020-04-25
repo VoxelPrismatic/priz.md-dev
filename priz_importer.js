@@ -61,6 +61,7 @@ if(meta__) {
             var script__ = document.createElement("script");
             script__.id = thing + ".min.js";
             script__.onload = function() {head__.after(scripts__.pop())};
+            script__.onerror = script__.onload;
             script__.src = base__ + thing + ".min.js";
             script__.type = "text/javascript";
             scripts__.push(script__);
