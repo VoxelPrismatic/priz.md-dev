@@ -24,7 +24,24 @@ var js_kw = [
 
 function js_str_regex(m, b, c) {
     var st = "";
-    st = c.split('').join("\u200b");
+    if(b == "f" || b == "F") {
+        var incode = false;
+        for(var d of c.split('')) {
+            if(d == "${") {
+                st += "</span>${";
+                incode = true;
+            } else if(d == "}") {
+                st += '}<span class="str">';
+                incode = false;
+            } else if(incode) {
+                st += d;
+            } else {
+                st += d+"\u200b";
+            }
+        }
+    } else {
+        st = c.split('').join("\u200b");
+    }
     return `<span class="str">${b}${st}${b}</span>`;
 }
 
