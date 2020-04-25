@@ -73,7 +73,7 @@ var js_regex = [
             return `${a}<span class="kw">class</span> <span class="cls">${b}</span>`;
         }
     ], [
-        /([\w\d_]+)([\(\[.])/gm,
+        /(\$?[\w\d_]+)([\(\[.])/gm,
         `<span class="fn">$1</span>$2`
     ],
     ...std_number__,
