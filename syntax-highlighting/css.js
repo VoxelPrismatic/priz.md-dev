@@ -11,42 +11,40 @@ var css_regex = [
         /(\~?')(.*?[^\\\n]|)'/gm,
         css_str_regex
     ],
-    ...std_escape__,
+    //...std_escape__,
     [
-        /^((\.[\w\d_-]+,?)+)/gm,
-        `<span class="fn">$1</span>`
+        /(\}?)(.+)\{/gm,
+        `$1<span class="cls">$2</span>{`
     ], [
-        /^((\#[\w\d_-]+,?)+)/gm,
-        `<span class="cls">$1</span>`
-    ], [
-        /^((\@[\w\d_-]+,?)+)/gm,
+        /(\@[.#\w\d_\-,\[\]\^=:]+?[ ;])/gm,
         `<span class="err">$1</span>`
     ], [
-        /\!important/gm,
+        /(\!important)/gm,
         `<span class="err">$1</span>`
     ], [
-        /([\w- ]+\:?)(.+?);/gm,
+        /(\$?[\w\d_]+)([\(\[.])/gm,
+        `<span class="fn">$1</span>$2`
+    ], [
+        /(\@?[\w\-\d ]+\:)(.+?);/gm,
         function(m, p1, p2) {
-            return `<span class="var">${p1}</span><span class="op">${p2}</span>`;
+            return `<span class="fn">${p1}</span>${p2};`;
         }
     ], [
-        /([^\w\d])(-?\d+\w+?)/gm,
+        /([^\w\d])(-?\d+\w*|\#[A-Fa-f0-9]{3,8})/gm,
         function(m, p1, p2) {
             return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
         }
     ], [
-        /\/\/(.*)\n/gm,
+        / \/\/(.*)\n/gm,
         function(m, a) {
             return `<span class="comm">//${a.split('').join('\u200b')}</span><br>`;
         }
     ], [
-        /([^\u200b])\/\*((.|\n)*)\*\//gm,
+        /([^\u200b])\/\*((.|\n)*?)\*\//gm,
         function(m, b, a) {
             return `${b}<span class="comm">/*${a.split('').join('\u200b')}*/</span>`;
         }
-    ],
-    ...std_err__,
-    [
+    ], [
         /\u200b/gm,
         ""
     ]
@@ -55,7 +53,7 @@ var css_regex = [
 function mark_syntax_css(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of js_regex) {
+    for(var r of css_regex) {
         st = st.replace(r[0], r[1]);
     }
     return mark_syntax(st, [], [], false, false);

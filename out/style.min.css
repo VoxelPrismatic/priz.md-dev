@@ -33,7 +33,7 @@ ul > li::marker,ol > li::marker{font-family:"Ubuntu Mono",mono;color:#8888;}
 .hide:hover,.hide:focus{color:#ffffff;}
 .loading{text-align:center;margin-top:10px;margin-bottom:10px;padding:5px;}
 .code{border:2px solid;border-bottom-color:#00000000;border-right-color:#334444;border-left-color:#334444;border-top-color:#334444;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;background-color:#222;margin:5px;padding:5px;color:#aaaaaa;font-family:"Ubuntu Mono",mono;cursor:auto;white-space:pre;}
-.code span{font-family:"Ubuntu Mono",mono;}
+.code *{font-family:"Ubuntu Mono",mono;}
 .invis{display:none;}
 .bgcolor{background-color:#112222;}
 .mono{font-family:"Ubuntu Mono",mono;}
