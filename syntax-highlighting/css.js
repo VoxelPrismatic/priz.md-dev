@@ -1,4 +1,7 @@
-function css_str_regex(m, b, c) {
+function css_str_regex(m, b, c, a) {
+    if(!a) {
+        a = b;
+    }
     st = c.split('').join("\u200b");
     return `<span class="str">${b}${st}${b}</span>`;
 }
@@ -10,8 +13,11 @@ var css_regex = [
     ], [
         /(\~?')(.*?[^\\\n]|)'/gm,
         css_str_regex
+    ], [
+        /\((https?:\/\/.+?)\)/gm,
+        `(<span class="str">$1</span>)`
     ],
-    //...std_escape__,
+    ...std_escape__,
     [
         /(\}?)(.+)\{/gm,
         `$1<span class="cls">$2</span>{`
@@ -22,7 +28,7 @@ var css_regex = [
         /(\!important)/gm,
         `<span class="err">$1</span>`
     ], [
-        /(\$?[\w\d_]+)([\(\[.])/gm,
+        /(\$?[\w\d_]+)([\(\[])/gm,
         `<span class="fn">$1</span>$2`
     ], [
         /(\@?[\w\-\d ]+\:)(.+?);/gm,
