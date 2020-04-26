@@ -24,7 +24,7 @@ var js_kw = [
 
 function js_str_regex(m, b, c) {
     var st = "";
-    if(b == "f" || b == "F") {
+    if(b == "`") {
         var incode = false;
         for(var d of c.split('')) {
             if(d == "${") {
