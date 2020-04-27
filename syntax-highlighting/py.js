@@ -73,14 +73,19 @@ var py_regex__ = [
         /([\w\d_]+)([\(\[.])/gm,
         `<span class="fn">$1</span>$2`
     ], [
+        /^\#(.*)\n/gm,
+        function(m, a) {
+            return `<span class="comm">#${a.split('').join('\u200b')}</span><br>`;
+        }
+    ], [
         /([^\u200b])\#(.*)\n/gm,
         function(m, b, a) {
             return `${b}<span class="comm">#${a.split('').join('\u200b')}</span><br>`;
         }
     ], [
-        /\#(.*)\n/gm,
-        function(m, a) {
-            return `<span class="comm">#${a.split('').join('\u200b')}</span><br>`;
+        /([^\u200b])\#(.*)\n/gm,
+        function(m, b, a) {
+            return `${b}<span class="comm">#${a.split('').join('\u200b')}</span><br>`;
         }
     ],
     ...std_number__,

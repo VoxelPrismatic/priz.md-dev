@@ -27,14 +27,14 @@ var std_number__ = [
 
 var std_err__ = [
     [
-        /([\w\d_]*)(Error|Exception|Failure|Exit|Warning)/gm,
+        /([\w\d_:]*)([Ee]rror|[Ee]xception|[Ff]ailure|[Ee]xit|[Ww]arning)/gm,
         function(m, p1, p2) {
             return `<span class="err">${(p1 + p2).split('').join('\u200b')}</span>`;
         }
     ], [
-        /Stop([\w\d_]+)/gm,
+        /([Ii]nvalid|[Ss]top|[Bb]ad)([\w\d_:]+)/gm,
         function(m, p1, p2) {
-            return `<span class="err">${("Stop" + p2).split('').join('\u200b')}</span>`;
+            return `<span class="err">${(p1 + p2).split('').join('\u200b')}</span>`;
         }
     ]
 ]

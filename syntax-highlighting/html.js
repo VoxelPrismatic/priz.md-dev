@@ -26,7 +26,7 @@ var html_regex__ = [
         /\&lt;script(.*)&gt;<\/span>((.|\n)*)<span class="op">&lt;\/script/gm,
         function(m, p1, p2) {
             var st = `&lt;script${p1}&gt;</span>`;
-            st += mark_syntax_js(p2).slice(0, -1);
+            st += mark_syntax_js__(p2).slice(0, -1);
             st += `<span class="op">&lt;/script`;
             return st;
         }
@@ -34,7 +34,7 @@ var html_regex__ = [
         /\&lt;style(.*)&gt;<\/span>((.|\n)*)<span class="op">&lt;\/style/gm,
         function(m, p1, p2) {
             var st = `&lt;style${p1}&gt;</span>`;
-            st += mark_syntax_css(p2).slice(0, -1);
+            st += mark_syntax_css__(p2).slice(0, -1);
             st += `<span class="op">&lt;/style`;
             return st;
         }

@@ -64,16 +64,16 @@ var js_regex__ = [
     ],
     ...std_escape__,
     [
-        /^([\u200b ]*)function ([\w\d_]+)/gm,
+        /^([\u200b ]*)function ([$\w\d_]+)/gm,
         `$1<span class="kw">function</span> <span class="fn">$2</span>`
     ], [
-        /^([\u200b ]*)class ([\w\d_]+)/gm,
+        /^([\u200b ]*)class ([$\w\d_]+)/gm,
         function(m, a, b) {
             js_cls.push(b);
             return `${a}<span class="kw">class</span> <span class="cls">${b}</span>`;
         }
     ], [
-        /(\$?[\w\d_]+)([\(\[.])/gm,
+        /([$\w\d_]+)([\(\[.])/gm,
         `<span class="fn">$1</span>$2`
     ],
     ...std_number__,
@@ -98,7 +98,7 @@ var js_regex__ = [
 function mark_syntax_js__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of js_regex_) {
+    for(var r of js_regex__) {
         st = st.replace(r[0], r[1]);
     }
     return mark_syntax__(st, js_kw__, js_cls__);
