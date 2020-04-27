@@ -62,7 +62,7 @@ if(meta__) {
             script__.id = thing + ".min.js";
             script__.onload = function() {head__.after(scripts__.pop())};
             script__.onerror = script__.onload;
-            script__.src = base__ "lang/" + thing + "-lang.min.js";
+            script__.src = base__ + "lang/" + thing + "-lang.min.js";
             script__.type = "text/javascript";
             scripts__.push(script__);
         }
