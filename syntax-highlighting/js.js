@@ -1,4 +1,4 @@
-var js_cls = [
+var js_cls__ = [
     "AggregateError", "ArrayBuffer", "Array", "AsyncFunction", "AsyncIterator",
     "Atomics", "BigInt64Array", "BigUint64Array", "BigInt", "Boolean", "DataView",
     "Date", "Error", "EvalError", "Float32Array", "Float64Array", "Function",
@@ -13,7 +13,7 @@ var js_cls = [
     "WeakSet", "WebAssembly", "null", "undefined"
 ];
 
-var js_kw = [
+var js_kw__ = [
     "async", "function", "block", "break", "class", "const", "continue",
     "debugger", "default", "do", "while", "empty", "export", "for", "of",
     "function*", "if", "else", "import", "import.meta", "label", "let",
@@ -22,7 +22,7 @@ var js_kw = [
     "await", "extends", "from", "typeof"
 ];
 
-function js_str_regex(m, b, c) {
+function js_str_regex__(m, b, c) {
     var st = "";
     if(b == "`") {
         var incode = false;
@@ -45,19 +45,19 @@ function js_str_regex(m, b, c) {
     return `<span class="str">${b}${st}${b}</span>`;
 }
 
-var js_regex = [
+var js_regex__ = [
     [
         /(")(.*?[^\\\n]|)"/gm,
-        js_str_regex
+        js_str_regex__
     ], [
         /(\/)([^*].+?[^\\*\n])\//gm,
-        js_str_regex
+        js_str_regex__
     ], [
         /(')(.*?[^\\\n]|)'/gm,
-        js_str_regex
+        js_str_regex__
     ], [
         /(\`)((.|\n)*[^\\\n]|)\`/gm,
-        js_str_regex
+        js_str_regex__
     ], [
         /\\u\{([A-Fa-f0-9\u200b]+)\}/gm,
         `<span class="op">\\u{$1}</span>`
@@ -95,11 +95,11 @@ var js_regex = [
     ]
 ];
 
-function mark_syntax_js(st) {
+function mark_syntax_js__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of js_regex) {
+    for(var r of js_regex_) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax(st, js_kw, js_cls);
+    return mark_syntax__(st, js_kw__, js_cls__);
 }

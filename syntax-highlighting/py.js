@@ -1,11 +1,11 @@
-var py_cls = [
+var py_cls__ = [
     "int", "float", "dict", "list", "tuple", "set", "bool", "None", "frozenset",
     "str", "bytes", "file", "type", "complex", "True", "range", "bytearray",
     "memoryview", "False", "range", "breakpoint", "callable", "classmethod",
     "map", "object", "quit"
 ];
 
-var py_kw = [
+var py_kw__ = [
     "import", "from", "yield", "break",  "if", "assert",  "finally", "def",
     "elif", "else", "for", "while", "id", "with", "as", "in", "not", "and",
     "or", "is", "super", "self", "global", "local", "try", "except", "pass",
@@ -13,7 +13,7 @@ var py_kw = [
     "isinstance", "next"
 ];
 
-function py_str_regex(m, a, b, c) {
+function py_str_regex__(m, a, b, c) {
     var st = "";
     if(a == "f" || a == "F") {
         var incode = false;
@@ -36,19 +36,19 @@ function py_str_regex(m, a, b, c) {
     return `<span class="str">${a}${b}${st}${b}</span>`;
 }
 
-var py_regex = [
+var py_regex__ = [
     [
         /([fFrRuUbB]?)(")(.*?[^\\]|)"/gm,
-        py_str_regex
+        py_str_regex__
     ], [
         /([fFrRuUbB]?)(')(.*?[^\\]|)'/gm,
-        py_str_regex
+        py_str_regex__
     ], [
         /([fFrRuUbB]?)(''')((.|\n)*[^\\]|)'''/gm,
-        py_str_regex
+        py_str_regex__
     ], [
         /([fFrRuUbB]?)(""")((.|\n)*[^\\]|)"""/gm,
-        py_str_regex
+        py_str_regex__
     ],
     ...std_escape__,
     [
@@ -97,11 +97,11 @@ var py_regex = [
     ]
 ];
 
-function mark_syntax_py(st) {
+function mark_syntax_py__(st) {
     st = st.replace(/\n/gm, " \n");
     st += "\n";
-    for(var r of py_regex) {
+    for(var r of py_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax(st, py_kw, py_cls);
+    return mark_syntax__(st, py_kw__, py_cls__);
 }

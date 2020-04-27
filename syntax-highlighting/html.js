@@ -1,4 +1,4 @@
-var html_regex = [
+var html_regex__ = [
     [
         /([^\\])<((.|\n)+?)>/gm,
         function(m, p2, p1) {
@@ -44,11 +44,11 @@ var html_regex = [
     ]
 ];
 
-function mark_syntax_html(st) {
+function mark_syntax_html__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of html_regex) {
+    for(var r of html_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax(st, [], [], false, false);
+    return mark_syntax__(st, [], [], false, false);
 }

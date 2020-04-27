@@ -39,7 +39,10 @@ var std_err__ = [
     ]
 ]
 
-function mark_syntax(st, kw, cls, aio = true, edit = true) {
+function mark_syntax__(st, kw, cls, aio = true, edit = true, aio_text = ["await", "async"]) {
+    // Reverse alphabetical sorting to prevent stuff like `char` being marked over `char16`
+    kw.sort().reverse();
+    cls.sort().reverse();
     var sym = "[\\"+"\\.,:;()[]{}~|/-+=*^%&@ ".split('').join("\\")+"]";
     var gsym = "(" + sym + ")";
     if(edit) {
@@ -77,7 +80,7 @@ function mark_syntax(st, kw, cls, aio = true, edit = true) {
         }
 
         if(aio) {
-            for(var r of ["await", "async"]) {
+            for(var r of aio_text) {
                 st = st.replace(
                     RegExp("^" + r + gsym, "gm"),
                     `<span class="aio">${r.split('').join('\u200b')}</span>$1`

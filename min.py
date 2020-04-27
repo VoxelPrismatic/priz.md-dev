@@ -75,7 +75,7 @@ for file in files:
     st = open(file).read()
     for r, s in repl_js + repl_ttl:
         st = re.sub(r, s, st)
-    filename = "out/" + file.split("/")[1].split(".")[0] + ".min.js"
+    filename = "out/lang/" + file.split("/")[1].split(".")[0] + "-lang.min.js"
     open(filename, "w+").write(header + st)
     print("Testing", file.split("/")[-1])
     os.system("nodejs " + filename);
