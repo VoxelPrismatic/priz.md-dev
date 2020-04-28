@@ -43,7 +43,7 @@ var css_regex__ = [
     ], [
         / \/\/(.*)\n/gm,
         function(m, a) {
-            return `<span class="comm">//${a.split('').join('\u200b')}</span><br>`;
+            return `<span class="comm">//${a.split('').join('\u200b')}</span>\n`;
         }
     ], [
         /([^\u200b])\/\*((.|\n)*?)\*\//gm,

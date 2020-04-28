@@ -73,25 +73,23 @@ var bash_regex__ = [
     ],
     ...std_number__,
     [
-        /^\#(.*)\n/gm,
-        function(m, a) {
-            var cls = "comm";
-            if(a.startsWith("!")) {
-                cls = "cls";
-            }
-            return `<span class="${cls}"> #${a.split('').join('\u200b')}</span><br>`;
-        }
-    ], [
         /([^\u200b])\#(.*)\n/gm,
         function(m, b, a) {
             var cls = "comm";
             if(a.startsWith("!")) {
                 cls = "cls";
             }
-            return `${b}<span class="${cls}"> #${a.split('').join('\u200b')}</span><br>`;
+            return `${b}<span class="${cls}"> #${a.split('').join('\u200b')}</span>\n`;
         }
     ], [
-        /#(.*)\n/gm,
+        /^\#(.*)\n/gm,
+        function(m, a) {
+            var cls = "comm";
+            if(a.startsWith("!")) {
+                cls = "cls";
+            }
+            return `<span class="${cls}"> #${a.split('').join('\u200b')}</span>\n`;
+        }
     ], [
         /\u200b/gm,
         ""

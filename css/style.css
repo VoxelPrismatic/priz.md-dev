@@ -108,8 +108,18 @@ blockquote {
   padding: 5px;
   border-left: #0ff 2px solid;
 }
+al {
+  display: block;
+  list-style-type: lower-alpha;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
 ol,
-ul {
+ul,
+al {
   margin: 0px;
   padding-top: 0px;
 }
@@ -117,7 +127,8 @@ ul {
   list-style-type: "> ";
 }
 ul > li::marker,
-ol > li::marker {
+ol > li::marker,
+al > li::marker {
   font-family: "Ubuntu Mono", mono;
   color: #8888;
 }
