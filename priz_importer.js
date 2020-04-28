@@ -50,7 +50,7 @@ if(meta__) {
     script__.src = base__.slice(0, -4) + "priz_syntaxer.js";
     script__.id = "priz_syntaxer";
     script__.type = "text/javascript";
-    head__.after(css__);
+    head__.after(script__);
     script__.onload = function() {
         load_regex__(document.getElementById("priz_syntaxer"));
     }
