@@ -64,7 +64,7 @@ function mark_page(st) {
                                     eval(code);
                                     console.info(`Finished loading syntax highlighting for '${syntax}'`);
                                 }
-                            );
+                            )
                         );
                         redefine_aliases__();
                     }

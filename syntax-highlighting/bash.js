@@ -33,7 +33,8 @@ var bash_kw__ = [
     "zgrep", "zmore", "grub-dev", "grub-install", "grub-mkconfig", "grub-mount",
     "grub-mkpasswd-pbkd2", "grub-mk-relpath", "grub-mkrescue", "grub-probe",
     "grub", "rluserman", "bc", "dc", "wget", "flex", "automake", "make", "sudo",
-    "su", "m4", "sed", "groff", "diffutils"
+    "su", "m4", "sed", "groff", "diffutils", "apt", "dnf", "apt-get", "aptitude",
+    "rpm", "snap", "flatpak", "yum", "pacman"
 ];
 
 function bash_str_regex__(m, b, c) {
