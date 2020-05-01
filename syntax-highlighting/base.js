@@ -27,12 +27,12 @@ var std_number__ = [
 
 var std_err__ = [
     [
-        /([\w\d_:]*)([Ee]rror|[Ee]xception|[Ff]ailure|[Ee]xit|[Ww]arning)/gm,
+        /([\w\d_:]*)([Ee]rror|[Ee]xception|[Ff]ailure|[Ee]xit|[Ww]arning|[Aa]bort)/gm,
         function(m, p1, p2) {
             return `<span class="err">${(p1 + p2).split('').join('\u200b')}</span>`;
         }
     ], [
-        /([Ii]nvalid|[Ss]top|[Bb]ad)([\w\d_:]+)/gm,
+        /([Aa]bort|[Ii]nvalid|[Ss]top|[Bb]ad)([\w\d_:]+)/gm,
         function(m, p1, p2) {
             return `<span class="err">${(p1 + p2).split('').join('\u200b')}</span>`;
         }
@@ -47,9 +47,8 @@ function mark_syntax__(st, kw, cls, aio = true, edit = true, aio_text = ["await"
     var gsym = "(" + sym + ")";
     if(edit) {
         for(var r of kw) {
-            if(r == "class") {
+            if(r == "class")
                 r += "[^=]";
-            }
             st = st.replace(
                 RegExp("^" + r + gsym, "gm"),
                 `<span class="kw">${r.split('').join('\u200b')}</span>$1`

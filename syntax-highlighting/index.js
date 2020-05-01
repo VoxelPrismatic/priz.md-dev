@@ -52,7 +52,7 @@ var syntax_alias__ = {
     "bash": mark_syntax_bash__,
 };
 
-function re_define_aliases__() {
+function redefine_aliases__() {
     syntax_alias__["py"] = mark_syntax_py__;
     syntax_alias__["js"] = mark_syntax_js__;
     syntax_alias__["java"] = mark_syntax_java__;
