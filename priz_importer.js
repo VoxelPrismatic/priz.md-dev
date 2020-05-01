@@ -57,6 +57,5 @@ if(meta__) {
 }
 delete css__;
 delete script__;
-delete base__;
 delete iframe_md__;
 delete lite_css__;
