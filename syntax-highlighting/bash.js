@@ -97,7 +97,7 @@ var bash_regex__ = [
     ]
 ];
 
-function mark_syntax_js__(st) {
+function mark_syntax_bash__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
     for(var r of js_regex__) {
