@@ -10,12 +10,10 @@ function load_regex__(elem) {
     elem__.after(css__);
     var ct__ = meta__.content;
     if(ct__.includes("html")) {
-        if(!ct__.includes("js")) {
+        if(!ct__.includes("js"))
             ct__ += ",js";
-        }
-        if(!ct__.includes("css")) {
+        if(!ct__.includes("css"))
             ct__ += ",css";
-        }
     }
     meta__.content = "index," + ct__ + ",base";
     for(var thing of meta__.content.split(",")) {
