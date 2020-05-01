@@ -49,48 +49,51 @@ function mark_syntax__(st, kw, cls, aio = true, edit = true, aio_text = ["await"
         for(var r of kw) {
             if(r == "class")
                 r += "[^=]";
+            var r2 = r.replace(/\\/gm, "");
             st = st.replace(
                 RegExp("^" + r + gsym, "gm"),
-                `<span class="kw">${r.split('').join('\u200b')}</span>$1`
+                `<span class="kw">${r2.split('').join('\u200b')}</span>$1`
             );
             st = st.replace(
                 RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"),
-                `$1<span class="kw">${r.split('').join('\u200b')}</span>$2`
+                `$1<span class="kw">${r2.split('').join('\u200b')}</span>$2`
             );
             st = st.replace(
                 RegExp("^" + r + "$"),
-                `<span class="kw">${r.split('').join('\u200b')}</span>`
+                `<span class="kw">${r2.split('').join('\u200b')}</span>`
             );
         }
 
         for(var r of cls) {
+            var r2 = r.replace(/\\/gm, "");
             st = st.replace(
                 RegExp("^" + r + gsym, "gm"),
-                `<span class="cls">${r.split('').join('\u200b')}</span>$1`
+                `<span class="cls">${r2.split('').join('\u200b')}</span>$1`
             );
             st = st.replace(
                 RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"),
-                `$1<span class="cls">${r.split('').join('\u200b')}</span>$2`
+                `$1<span class="cls">${r2.split('').join('\u200b')}</span>$2`
             );
             st = st.replace(
                 RegExp("^" + r + "$"),
-                `<span class="cls">${r.split('').join('\u200b')}</span>`
+                `<span class="cls">${r2.split('').join('\u200b')}</span>`
             );
         }
 
         if(aio) {
             for(var r of aio_text) {
+                var r2 = r.replace(/\\/gm, "");
                 st = st.replace(
                     RegExp("^" + r + gsym, "gm"),
-                    `<span class="aio">${r.split('').join('\u200b')}</span>$1`
+                    `<span class="aio">${r2.split('').join('\u200b')}</span>$1`
                 );
                 st = st.replace(
                     RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"),
-                    `$1<span class="aio">${r.split('').join('\u200b')}</span>$2`
+                    `$1<span class="aio">${r2.split('').join('\u200b')}</span>$2`
                 );
                 st = st.replace(
                     RegExp("^" + r + "$"),
-                    `<span class="aio">${r.split('').join('\u200b')}</span>`
+                    `<span class="aio">${r2.split('').join('\u200b')}</span>`
                 );
             }
         }
