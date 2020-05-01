@@ -56,17 +56,19 @@ function mark_page(st) {
                     if(typeof fn == "string")
                         syntax = syntax_alias__[syntax];
                     fn = syntax_alias__[syntax];
+                    globalThis.syntax__ = syntax;
                     if(fn == undefined) {
-                        console.warn(`Loading syntax highlighting for '${syntax}' on the fly`);
-                        fetch(`https://voxelprismatic.github.io/priz.md-dev/out/lang/${syntax}-lang.min.js`).then(
+                        console.warn(`Loading syntax highlighting for '${syntax__}' on the fly`);
+                        fetch(`https://voxelprismatic.github.io/priz.md-dev/out/lang/${syntax__}-lang.min.js`).then(
                             resp => resp.text().then(
                                 code => {
-                                    eval(code);
-                                    console.info(`Finished loading syntax highlighting for '${syntax}'`);
+                                    globalThis.eval(code);
+                                    console.info(`Finished loading syntax highlighting for '${syntax__}'`);
                                 }
                             )
                         );
                         redefine_aliases__();
+                        fn = syntax_alias__[syntax];
                     }
                     str += fn(code);
                 } catch(err) {
